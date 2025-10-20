@@ -1,0 +1,10 @@
+services:
+  app:
+    container_name: ADV2
+    ports:
+      - "80:80"
+    volumes:
+      - .:/var/www/html
+    build:
+      context: .
+      dockerfile: dockerfile

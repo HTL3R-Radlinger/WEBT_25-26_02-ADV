@@ -1,0 +1,19 @@
+{
+    "name": "radlinger/adv2",
+    "description": "ADV2",
+    "type": "project",
+    "autoload": {
+        "psr-4": {
+            "Radlinger\\ADV2\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "BYR"
+        }
+    ],
+    "require": {
+        "doctrine/dbal": "^4.2",
+        "twig/twig": "^3.17"
+    }
+}
