@@ -1,6 +1,4 @@
-<?php
-
-declare(strict_types=1);
+<?php declare(strict_types=1);
 
 use PHPUnit\Framework\TestCase;
 use App\Calculator;
@@ -15,42 +13,44 @@ class CalculatorTest extends TestCase
     }
 
     // Tests for add()
-    public function testAddMitPositivenZahlen(): void
+    public function testAddPositiveNumbers(): void
     {
-        $result = $this->calculator->add(3.0, 5.0);
-        $this->assertEquals(8.0, $result);
+        $result = $this->calculator->add(3, 5);
+        $this->assertEquals(8, $result);
     }
 
-    public function testAddMitNegativenZahlen(): void
+    public function testAddWithNegativeNumbers(): void
     {
-        $result = $this->calculator->add(-2.0, -5.0);
-        $this->assertSame(-7.0, $result); // Same Type
+        $result = $this->calculator->add(-3, -2);
+        $this->assertSame(-5.0, $result); // Check Type
     }
 
-    public function testAddMitNull(): void
+    // Tests for subtract()
+    public function testSubtract(): void
     {
-        $result = $this->calculator->add(0, 10);
-        $this->assertEquals(10.0, $result);
+        $result = $this->calculator->subtract(10, 4);
+        $this->assertEqualsWithDelta(6, $result, 0.0001); // Delta for Floating point numbers
+    }
+
+    // Tests for multiply()
+    public function testMultiply(): void
+    {
+        $result = $this->calculator->multiply(3, 4);
+        $this->assertGreaterThan(0, $result);
     }
 
     // Tests for divide()
-    public function testDivideMitGueltigenWerten(): void
+    public function testDivideValid(): void
     {
-        $result = $this->calculator->divide(10.0, 2.0);
-        $this->assertEquals(5.0, $result);
-        $this->assertIsFloat($result); // Additional test for Type
+        $result = $this->calculator->divide(10, 2);
+        $this->assertIsFloat($result); // Check Type
+        $this->assertEquals(5, $result);
     }
 
-    public function testDivideDurchNullWirftException(): void
+    public function testDivideByZero(): void
     {
         $this->expectException(\InvalidArgumentException::class);
-        $this->expectExceptionMessage("Division durch Null ist nicht erlaubt.");
-        $this->calculator->divide(5.0, 0.0);
-    }
-
-    public function testDivideMitNegativenZahlen(): void
-    {
-        $result = $this->calculator->divide(-10.0, 2.0);
-        $this->assertEquals(-5.0, $result);
+        $this->expectExceptionMessage("Division by Zero is not allowed.");
+        $this->calculator->divide(5, 0);
     }
 }

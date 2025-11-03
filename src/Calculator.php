@@ -24,7 +24,7 @@ class Calculator
     public function divide(float $a, float $b): float
     {
         if ($b === 0.0) {
-            throw new InvalidArgumentException("Division durch Null ist nicht erlaubt.");
+            throw new InvalidArgumentException("Division by Zero is not allowed.");
         }
         return $a / $b;
     }

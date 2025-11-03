@@ -7,3 +7,7 @@ folder)
 
 ``` ./vendor/bin/phpunit tests ```
 
+### To test the coverage use:
+
+```./vendor/bin/phpunit --coverage-html coverage/```
+
