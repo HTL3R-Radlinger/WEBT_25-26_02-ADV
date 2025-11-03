@@ -1,6 +1,6 @@
 {
-  "name": "radlinger/adv2",
-  "description": "ADV2",
+  "name": "htlw3r/radlinger",
+  "description": "Docker Setup for a web demo project",
   "type": "project",
   "autoload": {
     "psr-4": {
@@ -9,12 +9,14 @@
   },
   "authors": [
     {
-      "name": "BYR"
+      "name": "BRY"
     }
   ],
   "require": {
     "doctrine/dbal": "^4.2",
-    "twig/twig": "^3.17",
-    "phpunit/phpunit": "^11.0"
+    "twig/twig": "^3.17"
+  },
+  "require-dev": {
+    "phpunit/phpunit": "^9"
   }
 }
