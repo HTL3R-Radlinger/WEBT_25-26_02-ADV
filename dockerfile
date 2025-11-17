@@ -18,6 +18,15 @@ RUN echo "memory_limit = 2048M" >> /usr/local/etc/php/conf.d/execution.ini
 RUN echo "post_max_size = 100M" >> /usr/local/etc/php/conf.d/execution.ini
 RUN echo "upload_max_filesize = 100M" >> /usr/local/etc/php/conf.d/execution.ini
 
+# Xdebug installieren
+RUN pecl install xdebug \
+    && docker-php-ext-enable xdebug
+
+# Xdebug konfigurieren (Coverage aktivieren)
+RUN echo "zend_extension=$(find /usr/local/lib/php/extensions/ -name xdebug.so)" > /usr/local/etc/php/conf.d/docker-php-ext-xdebug.ini \
+    && echo "xdebug.mode=coverage" >> /usr/local/etc/php/conf.d/docker-php-ext-xdebug.ini \
+    && echo "xdebug.start_with_request=0" >> /usr/local/etc/php/conf.d/docker-php-ext-xdebug.ini
+
 WORKDIR /var/www/html/
 
 COPY . /var/www/html/ 
@@ -25,7 +34,7 @@ COPY . /var/www/html/
 RUN rm dockerfile
 RUN rm docker-compose.yaml
 RUN rm 02_webt-adv-basic-unit-tests-in-php.pdf
-RUN composer install
+# RUN composer install
 
 RUN chown -R www-data:www-data *
 
